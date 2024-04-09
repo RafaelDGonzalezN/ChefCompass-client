@@ -1,13 +1,24 @@
-import Card from "../../Components/Card/Card";
-import SearchBar from "../../Components/SearchBar/SearchBar";
+import { useDispatch, useSelector } from "react-redux";
 
+import { getAllRecets } from "../../Redux/Actions/actions";
+
+import Cards from "../../Components/Cards/Cards";
+import SearchBar from "../../Components/SearchBar/SearchBar";
+import Sidebar from "../../Components/Sidebar/Sidebar";
+import "./Home.module.css"
 
 const Home = () => {
+
+  // const dispatch = useDispatch();
+  // const recets = useSelector((state) => state.allRecets)
+
   return(
     <>
       <SearchBar/>
-      <h1>Este es el Home</h1>
-      <Card/>
+      <div className="container d-flex" style={{alignItems:"center", paddingTop:"50px"}} >
+        {/* <Sidebar/> */}
+        <Cards/>
+      </div>
     </>
   )
 }
