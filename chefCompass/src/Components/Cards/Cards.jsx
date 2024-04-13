@@ -6,7 +6,7 @@ const Cards = ({recets}) => {
   const recetsList = recets
 
   return(
-    <div className="container">
+    <div className="container ">
       <div className="row">
         {recetsList?.map((recets) => 
           <Card
