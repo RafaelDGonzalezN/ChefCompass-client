@@ -1,40 +1,93 @@
+import { useState } from "react"
+import {useDispatch} from "react-redux"
+import { postUsers } from "../../Redux/actions/actionsPost"
+
 const Register = () => {
 
-  return(
-    <div className="container">
-      <form class="mt-5 " style={{backgroundColor:"green"}}>
-      <div class="row mt-5">
-        <div class="col-6">
-          <label form="nombre" class="form-label">Nombre</label>
-          <input type="text" id="nombre" class="form-control"/>
-        </div>
-        <div class="col-6">
-          <label form="Apellido" class="form-label">Apellido</label>
-          <input type="text" id="Apellido" class="form-control"/>
-        </div>
-        <div class="col-6 mt-2">
-          <label form="telefono" class="form-label">Telefono</label>
-          <input type="text" id="telefono" class="form-control"/>
-        </div>
-        <div class="col-6 mt-2">
-          <label form="Correo" class="form-label">Correo Electronico</label>
-          <input type="text" id="correo" class="form-control"/>
-        </div>
+  const dispatch = useDispatch()
+  
+  const [input, setInput] = useState({
+    name:"",
+    last_name:"",
+    email:"",
+    password:"",
+    profile_picture:""
+  })
 
-        <div class="row mb-3 mt-5">
-          <label form="email" class="col-sm-2 col-form-label">Email:</label>
-          <div class="col-sm-10">
-            <input type="text"  class="form-control" id="email"/>
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+      setInput((prevData) => ({
+      ...prevData,
+      [name]:value,
+    }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(postUsers(input))
+  }
+
+  return(
+    <div className="container col-6">
+      <form  onSubmit={handleSubmit} className="mt-5">
+        <div className="row mt-5">
+          <div className="col-6">
+            <label htmlFor="name" className="form-label">Name</label>
+            <input 
+              type="text" 
+              name="name"
+              value={input.name}
+              onChange={handleChange}
+              className="form-control"
+            />
           </div>
-        </div>
-        <div class="mb-3 row">
-          <label form="pass" class="col-sm-2 col-form-label">contraseña:</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="pass"/>
+          <div className="col-6">
+            <label htmlFor="last_name" className="form-label">Last Name</label>
+            <input 
+              type="text" 
+              name="last_name" 
+              value={input.last_name}
+              onChange={handleChange}
+              className="form-control"
+            />
           </div>
+          <div className="col-6">
+            <label htmlFor="profile_picture" className="form-label">Profile Picture</label>
+            <input 
+              type="text" 
+              name="profile_picture"
+              value={input.profile_picture}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="row mb-3 mt-5">
+            <label htmlFor="email" className="col-sm-2 col-form-label">Email:</label>
+            <div className="col-sm-10">
+              <input 
+                type="text" 
+                className="form-control" 
+                name="email"
+                value={input.email}
+                onChange={handleChange}/>
+            </div>
+          </div>
+          <div className="mb-3 row">
+            <label htmlFor="password" className="col-sm-2 col-form-label">contraseña:</label>
+            <div className="col-sm-10">
+              <input 
+                type="password" 
+                className="form-control" 
+                name="password"
+                value={input.password}
+                onChange={handleChange}/>
+            </div>
+          </div>
+          
         </div>
-      </div>
-      <button type="submit" className="btn btn-primary mt-4">Submit</button>
+        <button type="submit" className="btn btn-primary mt-4">Submit</button>
+
       </form>
     </div>
   )
