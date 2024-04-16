@@ -1,11 +1,13 @@
 import { useState } from "react"
 import {useDispatch} from "react-redux"
+import {useNavigate} from "react-router-dom"
 import { postUsers } from "../../Redux/actions/actionsPost"
 
 const Register = () => {
 
   const dispatch = useDispatch()
-  
+  const navigate = useNavigate()
+
   const [input, setInput] = useState({
     name:"",
     last_name:"",
@@ -26,6 +28,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(postUsers(input))
+    navigate("/login");
+   
   }
 
   return(
