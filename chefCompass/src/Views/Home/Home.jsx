@@ -15,7 +15,8 @@ import "./Home.module.css"
 const Home = () => {
 
   const dispatch = useDispatch();
-  const recets = useSelector((state) => state.allRecets)
+  const recetas = useSelector((state) => state.allRecets.recets)
+  console.log(recetas)
 
   useEffect(() => {  
     dispatch(getAllRecets())
@@ -27,7 +28,7 @@ const Home = () => {
       <SearchBar/>
       <div className="container d-flex" style={{alignItems:"center", paddingTop:"50px"}} >
         {/* <Sidebar/> */}
-        <Cards recets={recets}/>
+        <Cards recetas={recetas}/>
       </div>
     </>
   )

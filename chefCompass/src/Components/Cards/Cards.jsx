@@ -1,21 +1,24 @@
 import Card from "../Card/Card";
 
 
-const Cards = ({recets}) => {
+const Cards = ({recetas}) => {
 
-  const recetsList = recets
+
+  if (!Array.isArray(recetas)) {
+    return <div>No hay recetas disponibles</div>;
+  }
 
   return(
     <div className="container ">
       <div className="row">
-        {recetsList?.map((recets) => 
+        {recetas.map((receta) => 
           <Card
-            key={recets.id}
-            id={recets.id}
-            image={recets.image}
-            name={recets.name}
-            duration={recets.duration}
-            ingredients={recets.ingredients}
+            key={receta.id}
+            id={receta.id}
+            image={receta.image}
+            name={receta.name}
+            duration={receta.duration}
+            ingredients={receta.ingredients}
           />)
         }
       </div>
