@@ -2,13 +2,15 @@ import {
   GET_ALL_RECETS, 
   POST_RECETS, 
   POST_USERS,
-  LOGIN_USER 
+  LOGIN_USER,
+  GET_DETAIL
 } from "../actions/actionsTypes";
 
 let initialState = {
   allRecets: [],
   newUsers: {},
   newRecets:{},
+  recetDetail:{},
   currentUser: null
 };
 
@@ -36,6 +38,12 @@ function rootReducer(state = initialState, action){
         ...state,
         currentUser: action.payload 
       };
+    }
+    case GET_DETAIL:{
+      return{
+        ...state,
+        recetDetail:action.payload
+      }
     }
     default:
       return state;

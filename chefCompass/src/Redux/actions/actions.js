@@ -18,10 +18,10 @@ export const getAllRecets = () => {
   }
 }
 
-export const getDetail = () => {
+export const getDetail = (id) => {
   return async function(dispatch){
     try {
-      const {data} = await axios.get(`http://localhost:3001/recets/`)
+      const {data} = await axios.get(`http://localhost:3001/recets/${id}`)
       
       return dispatch({
         type:GET_DETAIL,
@@ -29,7 +29,8 @@ export const getDetail = () => {
       })
 
     } catch (error) {
-      console.error(error.message);
+      console.error("Error al enviar la solicitud POST:", error);
+      throw error; 
     }
   }
 }

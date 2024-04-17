@@ -22,17 +22,17 @@ const Post = () => {
     }))
   }
 
-  const handleSubmit = async (e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const ingredientsArray = input.ingredients.split(',').map(ingredient => ingredient.trim());
 
-    const formattedData = {
-      ...input,
-      ingredients :ingredientsArray
-    }
+    // No es necesario dividir los ingredientes aquí, ya que se guardarán como una cadena de texto
+    const postData = { ...input };
 
-    const data = await dispatch(postRecets(formattedData))
-  }
+    console.log(postData);
+
+    // Enviar la solicitud POST con los datos actualizados
+    const data = await dispatch(postRecets(postData));
+  };
 
   return(
     <div className="container col-6">
